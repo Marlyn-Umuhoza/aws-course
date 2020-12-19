@@ -1,9 +1,6 @@
 pipeline {
      agent any
 
-     environment {
-         aws_credentials = credentials('aws-credentials')
-     }
      stages {
          stage('Build') {
              steps {
@@ -21,7 +18,7 @@ pipeline {
          }
          stage('Upload to AWS') {
               steps {
-                  withAWS(region:'us-east-2',credentials:'aws-credentials') {
+                  withAWS(region:'us-east-2',credentials:'credentials('aws-credentials')') {
                   sh 'echo "Uploading content with AWS creds"'
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'umuhoza')
                   }
