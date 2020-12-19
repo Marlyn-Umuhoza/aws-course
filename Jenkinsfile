@@ -2,7 +2,7 @@ pipeline {
      agent any
 
      environment {
-         aws-credentials = credentials('aws-credentials')
+         aws_credentials = credentials('aws-credentials')
      }
      stages {
          stage('Build') {
